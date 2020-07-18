@@ -54,6 +54,12 @@
     }
     .btmnav, .copy {
         margin:0 14px;
+        text-align: center;
+    }
+    .btmnav dd {
+        display: inline-block;
+        float: none;
+        
     }
     .btmnav:after {
         content: '';
