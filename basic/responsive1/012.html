@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"> 
+<title>min-device-pixel-ratio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	*{margin: 0; padding: 0;}
+	body,h1,h2,h3,h4{font-family: verdana,sans-serif; font-size: 12px;}
+	li{list-style: none;}
+	
+	.photo{
+		width: 240px;
+		height: 200px;
+		background-image: url(img/photo-240.png);
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		text-indent: -9999em;					/* 화면상에는 안보이지만 단어가 검색될 수 있도록 */
+
+		background-size: 100% 100%;		/* 배경크기를 모두 부모의 100%로 설정하면 */
+										/* 밑에 모바일화면에서도 고해상도 변경했을때 */
+										/* 압축되서 100%크기의 고화질로 출력됨 */
+	}
+
+	@media screen and (-webkit-min-device-pixel-ratio: 2) {	/* 모바일화면을 인식시키는 코드 */
+		.photo {
+			background-image: url(img/photo-480.png);
+		}
+	}
+</style>
+</head>
+
+<body>
+<!-- 반응형 웹디자인 -->
+<!--	6) 웹디자인 픽셀 고려하기 -->
+<p class="photo">photo example</p>
+
+</body>
+</html>

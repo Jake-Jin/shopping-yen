@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+.testbox0, .testbox1, .testbox2, .testbox3 {float:left; margin:5px;}
+
+.testbox0 {					/* textbox1에서 경계선색을 transparent 로해서 사라지게 만드는 효과적용 */
+	  border-style: solid;
+	  border-width: 0.7em 0.7em 0.7em 0.7em;
+	  border-color: #3498db transparent transparent transparent;
+	  width: 0em;  height: 0em;
+}
+.testbox1 {					/* 컨텐트 width = 0, height = 0 */
+	  border-style: solid;	/* box-sizing: border-box; 이면 컨텐트가 없어도 testbox2 와 똑같이 출력됨 */
+	  border-width: 0.7em 0.7em 0.7em 0.7em;
+	  border-color: #3498db #ccc #ccc #ccc;
+	  width: 0em;  height: 0em;
+}
+.testbox2 {					/* 경계선 상하폭 <= width and >= 0.5 * width */
+	  border-style: solid;	/* 경계선 상하폭 <= height and >= 0.5 * height */
+	  border-width: 0.7em 0.7em 0.7em 0.7em;
+	  border-color: #3498db #ccc #ccc #ccc;
+	  width: 1.4em;  height: 1.4em;
+}
+.testbox3 {					/* 경계선 폭보다 컨텐트 폭&너비를 더 크게 설정 */
+	  border-style: solid;
+	  border-width: 0.7em 0.7em 0.7em 0.7em;
+	  border-color: #3498db #ccc #ccc #ccc;
+	  width: 3em;  height: 3em;
+}
+
+
+	

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Rotatable 3D Cube</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+
+<body>
+  <div class="wrapper">
+
+  <div class="perspective">
+    <input type="radio" id="rotate" name="switch"/>  <!-- 항상 input > label > 동작할 contents 순으로 태그를 작성한다 -->
+    <label for="rotate">Auto</label>    <!-- 이렇게 해야 input 이 체크될때 input+label  -->
+                                        <!-- 또는 input+label+contents 태그에 쉽게 동작을 구현할 수 있음 -->
+    <input type="radio" id="front" name="switch" />   <!-- name 이 들어간 input 들은 서로 연동됨 -->
+    <label for="front">Front</label>                 <!-- 따라서 radio 버튼이 하나만 선택됨 -->
+
+    <input type="radio" id="left" name="switch"/>
+    <label for="left">Left</label>
+
+    <input type="radio" id="back" name="switch"/>
+    <label for="back">Back</label>
+
+    <input type="radio" id="right" name="switch"/>
+    <label for="right">Right</label>
+
+    <input type="radio" id="top" name="switch"/>
+    <label for="top">Top</label>
+
+    <input type="radio" id="bottom" name="switch"/>
+    <label for="bottom">Bottom</label>
+
+    <div class="cube">
+      <div class="front">
+        <img src="images/front.jpg">
+      </div>
+      <div class="back">
+        <img src="images/back.jpg">
+      </div>
+      <div class="top">
+        <img src="images/top.jpg">
+      </div>
+      <div class="bottom">
+        <img src="images/bottom.jpg">
+      </div>
+      <div class="left">
+        <img src="images/left.jpg">
+      </div>
+      <div class="right">
+        <img src="images/right.jpg">
+      </div>
+    </div>
+  </div>
+
+</div>
+  
+  
+</body>
+</html>
