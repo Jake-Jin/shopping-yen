@@ -1,0 +1,883 @@
+@charset "UTF-8";
+/* Tips
+
+
+	//높이를 같게 유지하는 레이아웃 + 그레디언트 + 반응형
+	//e.g 1; float 을 이용함 (구식방식)
+	* {
+		box-sizing: border-box;
+	}
+	body {
+		--font-family: "Open Sans";		//not important
+		background: #ecf0f1;
+	}
+	.wrapper {
+		max-width: 60rem;
+		width: 100%;
+		margin: 2rem auto;
+	}
+	.gradientbg::before,
+	.gradientbg::after {
+		content: '';
+		display: table;
+	}
+	.gradientbg::after {
+		clear: both;
+	}
+	.gradientbg .sidebar {
+		width: 20%;
+		padding: 1.618rem;
+		color: #fff;
+	}
+	.gradientbg main {
+		width: 60%;
+		padding: 1.618rem;
+		float: left;
+		margin-left: 20%;
+		--background: #fff;					//그라데이션 배경적용을 위해 주석처리
+	}
+	.gradientbg .left {
+		float: left;
+		margin-left: -80%;
+		--background: #3498db;				//그라데이션 배경적용을 위해 주석처리
+	}
+	.gradientbg .right {
+		float: right;
+		--background: #34495e;				//그라데이션 배경적용을 위해 주석처리
+	}
+	.gradientbg {
+		background: linear-gradient(to right, #3498db 0%, #3498db 20%,
+									#fff 20%, #fff 80%, #34495e 80%, #34495e 100%);
+	}
+
+	//large display	: 1200px 이상
+	//tablet		: 768 - 979px
+	//phone-tablet	: -767px
+	//phone			: -480px
+	//media query 를 이용한 반응형 설정; 	!@media query 는 항상 하단에 작성되어야함! (우선순위를 낮게)
+	
+	//!!! 필요한 크기별 반응형설정 묶음을 만들고,
+	//각 크기별로 브라우저 개발자도구를 이용해서 확인후, 변경된 태그를 가져와 반응형설정에 적용함!
+
+	@media screen and (min-width: 768px) and (max-width: 979px) {}
+	@media screen and (max-width: 768px) {
+		.gradientbg main {
+			width: 100%;
+			float: none;
+			margin-left: 0;
+			background: #fff;
+		}
+		.gradientbg .sidebar {
+			width: 50%;
+		}
+		.gradientbg .left {
+			margin-left: 0;
+		}
+		.gradientbg {
+			background: linear-gradient(to right, #3498db 0%, #3498db 50%,
+										#34495e 50%, #34495e 100%);
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.gradientbg .sidebar {
+			width: 100%;
+			float: none;	
+		}
+		.gradientbg {
+			background: none;
+		}
+		.gradientbg .left {
+			background: #3498db;
+		}
+		.gradientbg .right {
+			background: #34495e;
+		}
+	}
+	<body>
+		<div class="wrapper gradientgb">
+			<main>
+				<p>
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+					sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				</p>
+			</main>
+			<div class="sidebars">
+				<aside class="sidebar left">
+					<p>
+						You might have some latest posts here on the left
+					</p>
+				</aside>
+				<aside class="sidebar right">
+					<p>
+						And some other widgets here on the right
+					</p>
+				</aside>
+			</div>
+		</div>
+	</body>
+
+	//e.g 2; flex 를 이용함 (추천방식)
+	.flexbg {
+		display: flex;
+	}
+	.flexbg main {
+		background: #fff;
+		width: 60%;
+		padding: 1.618rem;
+		order: 2;
+	}
+	.flexbg .sidebar {
+		width: 20%;
+		padding: 1.618rem;
+		color: #fff;
+	}
+	.flexbg .left {
+		background: #3498db;
+		order: 1;
+	}
+	.flexbg .right {
+		background: #34495e;
+		order: 3;
+	}
+
+	@media screen and (max-width: 768px) {
+		.flexbg {
+			flex-wrap: wrap;	//기본값 nowrap 에서 wrap 으로 바꾸지않으면 main 이 100%라도 그대로 가로로 정렬됨
+		}
+		.flexbg main {
+			width: 100%;
+			order: 1;
+		}
+		.flexbg .sidebar {
+			width: 50%;
+
+		}
+		.flexbg .left {
+			order: 2;
+		}
+		.flexbg .right {
+			order: 3;
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.flexbg .sidebar {
+			width: 100%;
+		}
+	}
+	<div class="wrapper flexbg">
+		<main>
+			<p>
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+				sdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdlsdlfkjasvoijaelfjslfkjsdl
+			</p>
+		</main>
+		<aside class="sidebar left">
+			<p>
+				You might have some latest posts here on the left
+			</p>
+		</aside>
+		<aside class="sidebar right">
+			<p>
+				And some other widgets here on the right
+			</p>
+		</aside>
+	</div>
+
+	//flex
+	display: flex;			//블록단위로 배치함 	//inline-flex; 인라인단위로 배치함
+	flex-direction: row;	//default;
+							//row-reverse, column, column-reverse
+	flex-wrap: nowrap;		//default;박스를 한줄로 배치
+							//wrap; 여러줄로 배치
+							//wrap-reverse; 여러줄을 역방향으로 배치
+	flex-flow: row wrap;	//한번에 direction, wrap 설정을 할 수 있음
+	
+	//주축 정렬 (justify- 로 시작하는 정렬속성)
+	justify-content: 				//주축방향으로 배치
+					 flex-start;	//시작점부터 정렬
+					 flex-end;		//끝점부터 정렬
+					 center;		//중앙에 정렬
+					 space-between;	//양쪽 꽉차게 정렬
+					 space-around;	//박스요소별 양쪽 빈공간을 배분해서 정렬
+					 space-evenly;	//박스요소별 양쪽 빈공간을 모두 동일간격으로 정렬
+	
+	//교차축 정렬 (align- 으로 시작하는 정렬속성)
+	align-items: stretch;			//default; 교차축 방향으로 박스요소를 확장해서 배치
+				 flex-start;		//교차축의 시작라인에서 배치
+				 center;			//중심라인에서 배치
+				 flex-end;			//끝라인에서 배치
+				 baseline;			//시작점에 배치되는 박스에 있는 글자 베이스라인을 기준으로 배치
+	align-self: flex-start;			//특정 박스요소만 별도의 배치가 필요할 때 사용
+	
+	align-content: space-around;	//교차축방향으로 배치, justify-content 와 동일속성
+
+	order: 1;		//박스요소 배치순서를 변경할 때 사용; 변경할 각 박스요소에 순서설정
+
+	flex: [flex-grow] [flex-shrink] [flex-basis];
+		//flex-grow;	자식박스가 배치될 때, 부모박스에 모자란부분을 채움
+		//flex-shrink;	자식박스가 배치될 때, 부모박스에서 넘치는부분을 줄임
+		//flex-basis;	default는 0; grow 와 shrink 의 비율설정
+		//grow 와 shrink 의 값이 부모박스안에 있는 자식박스들의 비율로 작용함
+
+
+	//transform		//x, y, z 축 이동 및 원근감 설정
+					//가상으로 이동하기 때문에 실체가 원래 위치에 있고 다른 요소의 위치에 영향을 주지않음
+	
+		//e.g 1		//x-y 2d 평면에서의 이동
+		div img {
+			transition: all 0.25s;
+		}
+		div:hover img {
+			transform: translateX(100px);					//x축으로 이동;
+			//transform: translate(100px, (y축));			//2축 동시에 설정
+			//transform: translate3d(100px, (y축), (z축));	//3축 동시에 설정
+
+		}
+		//e.g 2		//z축을 포함한 3d 공간에서의 이동
+		//1) 부모요소에 지정할때
+		div {
+			perspective: 1000px;		//원근감(z축까지의 거리) 설정
+			perspective-origin: 0 0;	//x축 y축; 카메라 시점좌표 설정; 기본값은 센터
+		}
+		div img {
+			transition: all 0.35s;
+		}
+		div:hover img {
+			transform: translateZ(200px);
+		}
+		//2) 해당 요소에 직접 지정할때
+		div img {
+			transition: all 0.35s;
+			transform: perspective(1000px);		//
+		}
+		div:hover img {
+			transform: translateZ(200px);
+		}
+
+		//:scale(x, y), scaleX, scaleY, scaleZ	//크기를 변환
+		//scaleZ 는 원근감적용하는 perspective 와 translateZ 값이 있어야 적용됨
+		//e.g 1			//translate 를 변경하지않고 scale 만으로 효과 키우기
+		div img {
+			transition: all 0.35s;
+			transform-origin: 0 0;		//중심축 설정
+			transform: scaleZ(1);		//반드시 scale 이 translate 보다 먼저와야함
+			translateZ(100px);
+			//or
+			//transform: scaleZ(1) translateZ(100px);
+		}
+		div:hover img {
+			transform: scaleZ(2) translateZ(100px);
+		}
+
+		//:rotate, rotateX, rotateY, rotateZ(각도)
+		div img {
+			transform: rotateX(45deg);
+			transform-origin: 50% 0;	//%, px, top, right, bottom, left; 회전축 설정 (x y)
+		}
+
+		//skew(각도)			//비틀기
+		transform:skewX(
+
+		//vendor prefix	//column 과 마찬가지로 브라우저마다 요구하는 경우가 있음
+		-o-			//오페라
+		-moz-		//
+		-webkit-	//
+		-ms-		//
+
+	//input 태그
+	outline: none;	//포커스가 잡혔을때 테두리 변화없음
+
+		//e.g 1			//기본 테두리변화를 박스그림자효과로 변경하는 예제
+		input:focus {
+			box-shadow: inset 0 0 8px rgba(255, 0, 0, .8);
+		}
+
+	//shadow
+		//e.g 1			//단일 그림자 적용
+		text-shadow: 6px 10px 0 #00000060; 		//x축 y축 블러 (사이즈) 색상
+
+		//e.g 2			//복합 그림자 적용
+		text-shadow:		
+			10px 10px 0 rgba(0, 0, 0, .6),
+			5px 5px 0 #00f;
+		
+		//e.g 3-1		//박스 그림자
+		box-shadow: 10px 10px 0 rgba(0, 0, 0, .6);
+		//e.g 3-2		//박스 내부 그림자
+		box-shadow: inset 10px 10px 5px rgba(0, 0, 0, .9);
+
+	//gradient
+		//e.g 1-1		//단순 선형 그라데이션
+		{
+			background: linear-gradient(to bottom, #000 0%, #fff 100%);		//색이 어떻게 변하는지 정의 (방향, 색상1 위치1, 색상2 위치2, ...)
+		}
+		//e.g 1-2		//여러가지 색변화
+		{
+			background: linear-gradient(
+				to bottom, #2989cc 0%, #fff 50%, #906a00 52%, #d99f00 64%, #fff 100%);
+		}
+		//e.g 1-3		//각도변화
+		{
+			background: linear-gradient(
+				45deg, #2989cc 0%, #fff 50%, #906a00 52%, #d99f00 64%, #fff 100%);
+		}
+		//e.g 2-1		//방사형 그라데이션
+		{
+			background: radial-gradient(ellipse at center, #000 0%, #fff 100%);
+		}
+
+	//column
+	column-count: 2;		//태그요소를 컬럼단위로 분할배치
+	column-width: 150px		//count 대신에 width 만으로도 분할가능
+	column-rule: 2px dotted red;	//컬럼사이의 경계선 설정
+	column-span: all;		//컬럼적용 무시
+
+	columns: 200px 2;		//width 와 count 동시에 적용가능
+
+
+		//vendor prefix	//브라우저마다 요구하는 경우가 있음
+		-o-			//오페라
+		-moz-		//
+		-webkit-	//
+		-ms-		//
+
+	//animation						
+	animation-name: change_color;	//애니메이션 이름정의
+	animation-duration: 4s;			//지속시간 설정
+	animation-delay: 0.1s;			//딜레이 설정
+	animation-iteration-count: 2;	//애니메이션 반복횟수; 숫자 또는 infinite
+	animation-timimg-function: ease	//transition 과 옵션 동일
+	animation-fill-mode: forwards;	//forwards로 진행후 to에서 멈춤
+	animation-direction: normal;	//default
+									//reverse; 역방향으로 진행
+									//alternate; 순방향에서 역방향으로 전환
+									//alternate-reverse; 역방향에서 순방향으로 전환
+	
+	animation: change_color 4s 0.1s 2 ease forwards normal;
+
+	@keyframes change_color {			//정의된 이름의 애니메이션 효과설정
+		from {background-color: red;}	//추가 설정이없으면 기본적으로 다시 from 으로 돌아옴
+		to {background-color: blue;}
+
+		//or
+		0% {background-color: blue;}
+		50% {background-color: green;}
+		100% {background-color: red;}
+	}
+		//e.g 1
+		.bouncing_ball {
+			width: 4rem; height: 8rem; border-color: #fff;
+			position: relative;
+		}
+		.ball {
+			width: 4rem; height: 4rem; background: #fff; border-radius: 50%;
+			position: absolute;
+			animation: bounce 1s infinite;
+		}
+		@keyframes bounce {
+			0% {top: 0; animation-timing-function:ease-in;}
+			34% {transform: scale(1, 1);}//width: 4rem; height: 4rem;}
+			35% {top: 8rem;
+				animation-timing-function: ease-out;
+				//width: 4.3rem;
+				//height: 3rem;
+				transform: scale(1.3, 0.7);
+				}
+			45% {transform: sclae(1, 1);}//width: 4rem; height: 4rem;}
+			100% {top: 0;}
+		}
+		<div class="bouncing_ball">
+			<div class="ball"></div>
+		</div>
+
+		//e.g 2
+		.spinner-box {
+			position: relative;
+			width: 6rem;
+			height: 6rem;
+			margin: 6rem auto;
+		}
+		div[class^="curve"] {
+			position: absolute;
+			transform: rotate(135deg);
+			animation: spin 4s infinite;
+			box-sizing: border-box;				//중요함! 없으면 늘어난 경계선때문에 중심좌표가 밀림
+		}
+		div.curve-top-left {
+			width: 3rem;
+			height: 3rem;
+			border-top: 0.5rem solid #fff;
+			border-left: 0.5rem solid #fff;
+			border-top-left-radius: 100%;		//부분설정할때는 상하가 먼저, 좌우가 다음
+			transform-origin: 100% 100%;
+		}
+		div.curve-top-right {
+			width: 2rem;
+			height: 2rem;
+			left: 50%;
+			bottom: 50%;
+			border-top: 0.5rem solid #fff;
+			border-right: 0.5rem solid #fff;
+			border-top-right-radius: 100%;
+			transform-origin: 0 100%;
+		}
+		div.curve-bottom-right {
+			width: 3rem;
+			height: 3rem;
+			bottom: 0;
+			right: 0;
+			border-bottom: 0.5rem solid #fff;
+			border-right: 0.5rem solid #fff;
+			border-bottom-right-radius: 100%;
+			transform-origin: 0 0;
+		}
+		div.curve-bottom-left {
+			width: 2rem;
+			height: 2rem;
+			right: 50%;
+			top: 50%;
+			border-bottom: 0.5rem solid #fff;
+			border-left: 0.5rem solid #fff;
+			border-bottom-left-radius: 100%;
+			transform-origin: 100% 0;
+		}
+		div.center-circle {
+			width: 1.5rem;
+			height: 1.5rem;
+			position: absolute;
+			left: 50%; top: 50%;
+			background: #fff;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);	//원의 중심을 부모박스의 중심으로 이동
+			animation: pulse 2s infinite;
+		}
+		<div class="spinner-box">
+			<div class="curve-top-left"></div>
+			<div class="curve-bottom-right"></div>
+			<div class="curve-top-right"></div>
+			<div class="curve-bottom-left"></div>
+			<div class="center-circle"></div>
+		</div>
+		@keyframes spin {
+			0% {transform: rotate(135deg); opacity: 1;}
+			25% {opacity: 0.75;}
+			50% {transform: rotate(675deg); opacity: 1;}
+			75% {opacity: 0.75;}
+			100% {transform: rotate(135deg); opacity: 1;}
+
+		}
+		@keyframes pulse {
+			0% {opacity: 1;}
+			50% {opacity: 0.5;}
+			100% {opacity: 1;}
+		}
+
+		//링크에 애니메이션 적용
+		//e.g 3-1		//hover시, 밑줄 및 배경색효과
+						//anchor 태그의 밑줄에는 효과를 적용할 수 있는 것이 거의 없으므로, 대게 경계선에 효과를 적용함
+		a.fade-in-bg {
+			text-decoration: none;
+			border-bottom: 0.0625em dotted #3498db;		//16px * 0.0625em = 1px
+			transition: 0.35s;		//대상요소를 생략하면 default = all
+			padding: 0. 0.25em 0.05em;
+		}
+		a.fade-in-bg:hover {
+			background: #3498db;
+			color: #fff;
+		}
+		//e.g 3-2		//hover시, 슬라이딩 효과
+		a[class^="slide"] {				//현재 컨텐트는 'other parts'
+			text-decoration: none;
+			line-height: 1.5em;
+			padding: 0 0.25em;
+			border-bottom: 0.0625em dotted #3498db;
+			position: relative;
+
+			display: inline-block;	//크기를 가지기위해 설정해줌; 설정하지 않으면 크기가 없기때문에 overflow 의 효과가 없음
+			vertical-align: bottom;	//크기를 가지게되서 높이가 바뀌기때문에 수직정렬해줌
+			overflow: hidden;		//hover 되기전의 상태를 숨기기위해 사용; a태그 범위밖의 컨텐트는 보이지 않게하기 위함
+			
+		}
+		a[class^="slide"]:before {		//:after 를 사용해도 무방함
+			//content: 'other parts';		//원래 컨텐트와 같은 컨텐트를 만듬
+											//하지만 여러가지 단어를 모두 적용하기에는 비효율적임
+			content: attr(data-linktext);	//따라서, attr 를 이용하여 사용자정의 속성값을 불러오도록 함
+			background: #3498db;
+			color: #fff;
+			position: absolute;
+			transition: 0.35s;
+		}
+		.slide-from-left:before {		//원래 컨텐트의 왼쪽에서 오른쪽으로 슬라이딩
+			left: -100%;		//한쪽만 위치이동하면 너비가 정확하지 않으므로 양쪽모두 정의해줘야함
+			right: 100%;
+		}
+		a[class^="slide"]:hover:before {
+			left: 0; right: 0;
+			top: 0; bottom: 0;
+		}
+		.slide-from-right:before {
+			left: 100%;
+			right: -100%;
+		}
+		.slide-from-top:before {
+			top: -100%;
+			bottom: 100%;
+			left: 0; right: 0;		//초기의 좌우위치를 지정하지 않으면 동작시 크기가 변동됨
+		}
+		.slide-from-bottom:before {
+			top: 100%;
+			bottom: -100%;
+			left: 0; right: 0;
+		}
+
+		//data- 를 접두어로 사용하면 html 에서 사용자정의 속성을 만들수 있음
+		<a href="" data-linktext="other parts" class="slide-from-left">other parts</a>
+		<a href="" data-linktext="my fortune" class="slide-from_right">my fortune</a>
+		<a href="" data-linktext="from Leyden" class="slide-from-top">from Leyden</a>
+		<a href="" data-linktext="and some other" class="slide-from-bottom">and some other</a>
+
+		//e.g 3-3-1		//여러가지 밑줄 효과
+		a.fade-in-underline {
+			text-decoration: none;
+			padding: 0 0.125em; 0.05em;
+			border-bottom: 0.125em solid transparent;	//transparent; 투명색
+			transition: all 0.35s;
+		}
+		a.fade-in-underline:hover {
+			border-color: #3498db;
+		}
+		<a href="" class="fade-in-underline">two years</a>
+		//e.g 3-3-2
+		a[class^="underline"] {
+			text-decoration: none;
+			padding: 0 0.125em 0.05em;
+			position: relative;
+		}
+		a[class^="underline"]:before {
+			content: '';				//크기를 갖게하기위해 컨텐트 생성해줌
+			position: absolute;
+			top: 100%;
+			border-bottom: 0.125em solid #3498db;
+			transition: 0.35s;
+		}
+		a[class^="underline"]:hover:before {
+			left: 0; right: 0;
+		}
+		a.underline-from-left:before {
+			left: 0; right: 100%;
+		}
+		<a href="" class="underline-from-left">therefore consulted</a>
+
+		//e.g 4			//버튼 애니메이션
+		button {							//공통 버튼 속성
+			font-size: 2em;
+			background: #3498db;
+			color: #fff;
+			border: 0.25rem solid #3498db;
+			--padding: 0.85em 0.75em;		//의미없음(확인용)
+			margin: 1rem;
+			position: relative;
+			z-index: 1;						//z축 layer 레벨
+			overflow: hidden;
+		}
+		button:hover {
+			color: #3498db;
+		}
+		button:before {
+			content: '';
+			background: #ecf0f1;
+			position: absolute;
+			padding: 0.85em 0.75em;
+			z-index: -1;
+		}
+		.slide-from-left:before {
+			left: -100%; right: 100%;
+			top: 0; bottom: 0;
+		}
+		.slide-from-right:before {
+			left: 100%; right: -100%;
+			top: 0; bottom: 0;
+		}
+		.slide-from-top:before {
+			left: 0; right: 0;
+			top: -100%; bottom: 100%;
+		}
+		.slide-from-bottom:before {
+			left: 0; right: 0;
+			top: 100%; bottom: -100%;
+		}
+		button[class^="slide"]:before {
+			transition: 0.35s;
+		}
+		button[class^="slide"]:hover:before {
+			left: 0; right: 0; top: 0; bottom: 0;
+		}
+		.grow-box:before {
+			left: 0; right: 0;
+			top: 0; bottom: 0;
+			transform: scale(0);
+			transition: 0.35s;
+		}
+		.grow-box:hover:before {
+			transform: scale(1);
+		}
+		.grow-ellipse:before {
+			left: -50%; right: -50%;
+            top: -50%; bottom: -50%;
+            border-radius: 50%;
+			
+			transform: scale(0);
+			transition: 0.35s;
+		}
+		.grow-ellipse:hover:before {
+			transform: scale(1);
+		}
+		.grow-skew-forward:before {
+			left: -20%; right: -20%;
+            top: 0; bottom: 0;
+            transform: skewX(-45deg);
+			
+			transform: scale(0);
+			transition: 0.35s;
+		}
+		.grow-skew-forward:hover:before {
+			transform: scale(1);
+		}
+		.grow-skew-backward:before {
+			left: -20%; right: -20%;
+            top: 0; bottom: 0;
+			
+			transform: skewX(45deg) scaleX(0);
+			transition: 0.35s;
+		}
+		.grow-skew-backward:hover:before {
+			transform: skewX(45deg) scaleX(1);
+		}
+		.grow-spin:before {
+			left: 0; right: 0;
+            top: 0; bottom: 0;
+			
+			transform: scale(0) rotate(-180deg);
+			transition: 0.35s;
+		}
+		.grow-spin:hover:before {
+			transform: scale(1) rotate(0deg) ;
+        }
+		<div class="wrapper">
+			<button class="slide-from-left">SLIDE FROM LEFT</button>
+			<button class="slide-from-right">SLIDE FROM RIGHT</button>
+			<button class="slide-from-top">SLIDE FROM TOP</button>
+			<button class="slide-from-bottom">SLIDE FROM BOTTOM</button>
+			<hr>
+			<button class="grow-box">GROW BOX</button>
+			<button class="grow-ellipse">GROW ELLIPSE</button>
+			<button class="grow-skew-forward">GROW SKEW &rarr;</button>
+			<button class="grow-skew-backward">GROW SKEW &larr;</button>
+			<button class="grow-spin">GROW SPIN</button>
+		</div>
+
+
+	//pointer-events			//이벤트 발생 유무를 설정	
+	pointer-events: none;		//이벤트 끔
+	pointer-events: auto;		//이벤트 켬
+
+	//z-index: -1;				//z방향의 레이어 레벨을 조정
+
+	//transition
+	transition-property: width;				//width가 변할때 적용되도록 설정
+	transition-duration: 2s;				//width가 변화시간을 설정
+	transition-delay: 1s;					//변화적용 딜레이를 설정
+	transition-timing-function: ease;		//속도설정; ease - 점점빨라지다가 다시느려짐
+	transition-timing-function: ease-in;	//초반이 느리고 점점 빨라짐
+	transition-timing-function: ease-out;	//초반이 빠르고 점점 느려짐
+	transition-timing-function: ease-in-out;//초반/후반이 느리고 중반이 빨라짐
+	transition: width 2s 1s ease-in-out;	//변화대상 지속시간 딜레이 효과설정
+		//e.g
+		parent img {
+			transition: width 2s 1s ease-in-out,
+						margin-left 2s 1s ease;
+			//or transition: all 2s 1s ease;	//모든 속성이 효과가 같을경우 통합설정가능
+			//cubic-bezier(1,.62,.26,1.61)		//cubic-bezier 사용해서 커스터마이징 가능
+		}
+		parent:hover img {
+			width: 400px;
+			margin-left: 100px;
+		}
+
+	//position			//static (default), absolute, relative, fixed, sticky
+	//absolute, relative, fixed 는 가상으로 움직이기때문에 다른 태그가 위치영향을 받지않음
+	position: absolute;	//부모가 기준(static을 제외한 모든값)을 가지지않으면, body 를 기준으로 이동함 (top, right, bottom, left)
+	position: relative;	//자신을 기준으로 이동함
+	position: fixed;	//무조건 현재화면을 기준으로 이동함
+	position: sticky;	//fixed 와 같은 특성이지만 실체가 이동하므로 다른 태그에 위치 영향을 미침
+
+	//정중앙에 모달 배치
+	{
+		width: 500px;
+		height: 200px;
+		position: absolute; //or fixed;
+		left: calc(50% - 250px);		//연산자 양옆은 반드시 white-space가 와야함
+		top: calc(50% - 100px);
+	}
+	//float
+	float: left;		//배치할 방향으로 이동하고 컨텐트만큼의 크기만 가진다
+						//자식 float 요소들때문에 부모블록의 height 가 0으로 변경됨
+						//
+	clear: left;		//현재 설정된 float 방향이동을 clear 가 적용된 태그부터 무효화시킴 / left, right, both
+		//e.g
+		parent p {
+			float: left;
+		}
+		parent:after {
+			content: '';	//before 또는 after에 컨텐트 속성이 반드시 필요
+			clear: left;
+			display: block;	//태그가 블록요소가 아닐경우 필요
+		}
+
+
+	//box-sizing
+	box-sizing: content-box;	//default - 박스 사이즈(width, height)가 컨텐트까지되도록 설정
+								//컨텐트밖의 padding 또는 border 를 설정하면 원래 사이즈를 벗어나게됨
+
+	box-sizing: border-box;		//박스 사이즈가 경계선까지되도록 설정
+								//border 안의 사이즈가 변경해도 전체 사이즈는 변경되지 않음
+
+
+
+	//border
+	border-radius: 100px		//모두 100px rounded
+	border-radius: 100px / 50px	//모든수평 100px, 모든수직 50px
+
+	//background
+	background-repeat: repeat;	//default- 블록크기만큼 배경이미지가 반복됨
+	background-repeat: no-repeat;	//반복없음
+	background-repeat: repeat-x;	//수평반복
+	background-repeat: repeat-y;	//수직반복
+
+	background-attachment: scroll;	//default
+	background-attachment: fixed;	//배경은 위치고정이고 컨텐츠만 스크롤에 따라 이동함
+
+	background-position: left top;	//default
+	
+	//로고 글자를 이미지로 적용 (검색이 용이하기때문)
+	//Image replacement IR
+	a {
+		text-indent: -9999em;	//글자를 화면밖으로 이동
+		background-image:url(경로);	//css에서 이미지 지정
+	}
+
+	//overflow:
+	overflow: hidden;	//블록크기에 벗어나는 것을 숨김
+	overflow: scroll;	//상하방향에 스크롤 생성
+	overflow: auto;		//넘치는 방향에만 스크롤 생성
+	overflow: visible;	//default
+
+	//display:
+	display: grid;
+	display: flex;
+
+	//legacy properties ------------------------------------------------
+	display: table;			//자손요소에 적용됨
+		//자식태그
+		display: table-cell;	//테이블처럼 셀로 배치됨
+		width: 50%;				//한 line의 50%셀로 적용됨
+	//------------------------------------------------
+	display: list-item;	//요소를 list처럼 블록으로 변경
+
+	display: none;		//사라지고 공간을 차지하지않음
+	visibility: hidden;	//사라지지만 공간을 차지함
+
+	//글자배치
+	* {
+		text-align: justify;	//균등분할
+		word-break: break-all;	//단어분할해서 다음줄로 넘기기
+	}
+
+	//white-space
+	white-space: nowrap;	//줄바꿈없이 한줄로 보임
+	white-space: normal;	//단어 단위로 화면끝에서 줄바꿈
+	white-space: pre;		//css에 작성된 양식대로 화면에 보이고 문장이 길어도 줄바꿈없음
+
+	//이미지 밑에 공백 없애기
+	img {
+		vertical-align: top;
+	}
+
+*/
+
+
+
+/* ---------------------------------------------------- */
+
+/* 요소(element) 여백 초기화  */
+html, body,
+div, span,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, address, pre, cite,
+form, fieldset, input, textarea, select,
+table, th, td {
+	margin:0;
+	padding:0;
+	}
+
+/* 제목요소 */
+h1, h2, h3, h4, h5, h6 {  
+	font-size:inherit;   
+	font-weight:inherit;   
+	} 
+
+/* 테두리 없애기 */
+fieldset, img, abbr,acronym { border:0 none; } 
+
+/* 목록 */
+ol, ul { list-style:none; margin: 0; padding: 0;}
+
+/* 테이블 - 마크업에 'cellspacing="0"' 지정 함께 필요 */
+table {
+	border-collapse: separate;
+	border-spacing:0;
+	border:0 none;
+	}
+caption, th, td {
+	text-align:left;
+	font-weight: normal;
+}
+
+/* 텍스트 관련 요소 초기화 */
+address, caption, strong, em, cite {
+	font-weight:normal;
+	font-style:normal;
+	}
+ins { text-decoration:none; }
+del { text-decoration:line-through; }
+
+/* 인용문 */
+blockquote:before, blockquote:after, q:before, q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
+/* 수평선*/
+hr { display:none; }
+
+blockquote {
+    margin: 0 0 1rem;
+}
+
+/* 하이퍼링크*/
+a{
+	text-decoration: none;
+	color:inherit;
+}
+a:hover{
+	text-decoration: underline;
+}
