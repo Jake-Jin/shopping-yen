@@ -1,5 +1,41 @@
 @charset "UTF-8";
 /* Tips
+	//몇가지 팁
+	//not 속성
+	li:not(last-child):before {}
+
+	//넘버링
+	h3 {counter-increment:h3c;}					//counter-increment:'변수명';
+	h3::before {content: counter(h3c) '. ';}	//content: counter('변수명');	// :: (css3문법)
+																				// : (css2문법)
+	//배경영역 설정
+	background-clip: 	//주어진 요소안의 배경영역 설정	//border-box; padding-box; content-box;
+						//box-sizing 은 어떤 요소의 컨텐트를 border 까지 혹은 content 까지할지 설정
+	//그림자
+	box-shadow: 0 0 0 10px rgba(255, 0, 0, .5);	//h-offset v-offset (blur) (range-of-spread)
+
+	//다중테두리
+	.container {
+		position: relative;
+	}
+	.container:before {
+		content: '';
+		position: absolute;
+		top: 5px; right: 5px; left: 5px; bottom: 5px;
+		border: 5px solid #d2d4fa;
+	}
+	.container:after {
+		content: '';
+		positioin: absolute;
+		top: 0; right: 0; left: 0; bottom: 0;
+		border 1px solid #fff;
+		transition: 0.35s;
+	}
+	.container:hover:after {
+		top: -10px; right: -10px; left: -10px; bottom: -10px;
+	}
+
+
 	//높이를 같게 유지하는 레이아웃 + 그레디언트 + 반응형
 	//e.g 1; float 을 이용함 (구식방식)
 	* {

@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+/* 단일 변수 설정 */
+@mainColor: #444;
+@titleColor: (@mainColor - #222);
+@linkColor: (@mainColor + #222);
+@mainFontSize: 12px;
+@titleFontSize: (@mainFontSize * 2.0);
+
+@baseUrl : "http://www.abc.com";
+
+/* Mixins; 다른언어의 함수와 유사함 */
+.bordered {                             //함수명 (css의 class 명이 아님!)
+    border-top: 1px dotted red;
+    border-bottom: 2px solid blue;
+}
+
+.rounded-corners(@radius: 5px) {        //다른언어 함수의 parameter 를 넣는것과 같이 할 수 있음
+    border-radius: @radius;             //현재 parameter 기본값 = 5px
+}
+
+// ---------------------------------------------------------------------------------
+nav h1 {
+    .bordered;                          //Mixins 적용; 변수명만 입력하면 됨
+}
+
+body {
+    color: @mainColor;
+    font-size: @mainFontSize;
+    
+    background-image: url("@{baseUrl}/images/bg.jpg");    //url 변수를 불러올 때는 url("@{변수}/나머지경로")
+}
+
+h1 {
+    color: @titleColor;
+    font-size: @titleFontSize;
+}
+
+a {
+    color: @linkColor;
+}
+
+#content h1 {
+    .rounded-corners;               //OR .rounded-corners(20px);    parameter 값을 넣을 수 있음
+    background-color: silver;
+}
+
+#header {                           //태그내부에 하위태그를 정의할 수 있음
+    color: black;
+    nav {
+        font-size: 16px;
+        a {
+            color: red;
+            &:hover {               //현재 태그의 속성을 정의할 때 현재태그 내부에서 &: 로 정의함
+                color: blue;
+            }
+        }
+    }
+}
