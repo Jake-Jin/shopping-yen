@@ -1,0 +1,38 @@
+body {
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  margin: 12px 0;
+}
+.card-container {
+  position:relative;
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  margin:100px;
+
+  perspective: 600px;     /* 원근감을 설정해서 카드회전효과를 더시각적으로 강조할 수 있음 */
+}
+.card {
+  height: 100%;
+  width: 100%;  
+  position: absolute;
+  transition: 1s ease-in-out;
+  transform-style: preserve-3d;   /* 자식태그에게 계속 부모의 위치에 대해 상대적인 위치값을 갖게 해줌 */
+}
+.card:hover {
+  transform: rotateY(180deg);
+}
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  backface-visibility: hidden;    /* 여러태그가 겹쳐있을때 뒷면을 시각화 on/off */  
+}
+.back {
+  background: #eaeaed;
+  color: #0087cc;
+  text-align: center;
+  line-height: 150px;
+  transform: rotateY(180deg);
+}
