@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*-- Sample 1 - list */
+        .todo {
+            display: inline;
+            padding-left: 0;
+        }
+        .todo li {
+            display: inline;
+        }
+        .todo li:last-child:before {
+            content: 'and ';
+        }
+        .todo li:last-child:before {
+            content: '.';
+        }
+        .todo li:not(:last-child):after {
+            content: ', ';
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Sample 1 - list -->
+    <span>Things to do today:</span>
+    <ul class="todo">
+        <li>eat bacon</li>
+        <li>change the AC filter</li>
+        <li>pick up another gallon of milk</li>
+        <li>invade Antarctica</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+        font-family: sans-serif;
+        margin: 0;
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/409269/flowers.jpg') top center no-repeat;
+        }
+        .container {
+        width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        color: #777;
+        padding: 20px;
+
+        background-clip: padding-box;           /* 배경영역을 경계선,컨텐트,패딩 영역중 선택 */
+        --box-sizing:content-box;               /* 박스크기를 컨텐트영역까지할지 경계선영역까지할지 */
+        }
+        
+        .container h2 {
+        margin-top: 0;
+        font-family: 'Arial Narrow', sans-serif;
+        font-weight: normal;
+        text-transform: uppercase;
+        }
+
+        /* 방법 1 - 경계선 */
+        .container1 {
+            border: 10px solid rgba(255, 0, 0, .5);
+        }
+        /* 방법 2 - 그림자 */
+        .container2 {
+            box-shadow: 0 0 0 10px rgba(255, 0, 0, .5);   /* 위에 경계선 효과와 같은 효과적용 (그림자효과를 이용해서) */
+        }
+        /* 방법 3 - 이중테이블 */
+        .container {
+            position: relative;
+        }
+        .container3:before {
+            content: '';
+            position: absolute;
+            left: 5px; top: 5px; right: 5px; bottom: 5px;
+            border: 5px solid #d2d4fa;
+        }
+        .container3:after {
+            content: '';
+            position: absolute;
+            left: 0px; top: 0px; right: 0px; bottom: 0px;
+            border: 1px solid #fff;
+            transition: 0.4s;
+        }
+        .container3:hover:after {
+            left: -10px; top: -10px; right: -10px; bottom: -10px;
+        }
+    </style>
+</head>
+<body>
+     <!-- Sample 3 -->
+     <div class="container container1">
+        <h2>Transparent Borders</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores accusamus non veniam repellat ab delectus autem cupiditate dignissimos, blanditiis nisi nesciunt earum esse odit iusto nihil consequatur doloremque dicta?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis et nulla dignissimos corporis ab pariatur magnam, impedit incidunt, iure at porro voluptate, iste architecto voluptas commodi blanditiis suscipit perferendis quas!
+        </p>
+    </div>
+    <div class="container container2">
+        <h2>Transparent Borders</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores accusamus non veniam repellat ab delectus autem cupiditate dignissimos, blanditiis nisi nesciunt earum esse odit iusto nihil consequatur doloremque dicta?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis et nulla dignissimos corporis ab pariatur magnam, impedit incidunt, iure at porro voluptate, iste architecto voluptas commodi blanditiis suscipit perferendis quas!
+        </p>
+    </div>
+    <div class="container container3">
+        <h2>Transparent Borders</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores accusamus non veniam repellat ab delectus autem cupiditate dignissimos, blanditiis nisi nesciunt earum esse odit iusto nihil consequatur doloremque dicta?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis et nulla dignissimos corporis ab pariatur magnam, impedit incidunt, iure at porro voluptate, iste architecto voluptas commodi blanditiis suscipit perferendis quas!
+        </p>
+    </div>
+</body>
+</html>

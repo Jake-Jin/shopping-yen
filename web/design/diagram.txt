@@ -1,0 +1,16 @@
+<body>
+	<header>
+		<low1>home
+		<low2><columns> new in / offers / tops / pants / dresses / skirts / accessories / wig / sale
+
+	<banner1-words / sales, offers>
+	<banner2-photos>
+	<banner3-words / sales, offers>
+
+	<container>
+		<main item list1><columns><moving <---- ><10 items at random><in full>
+		<main item list2><columns><moving <---- ><10 items at random><in full>
+		
+
+
+privacy policy
