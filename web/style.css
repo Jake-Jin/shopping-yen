@@ -1,11 +1,57 @@
-header {
+.sub-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+    .sub-container .logo {
+        width: 30%;
+        
+    }
+    .sub-container .title {
+        width: 40%;
+    }
+    .sub-container .bookmark {
+        width: 30%;
+    }
+.menu-list ul {
+    display: flex;
+    justify-content: space-between;
+}
+.menu-list ul li {
+    width: 100%;
+    text-align: center;
+}
+
+.bookmark ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/* ------------------------- HIDDEN ------------------------------- */
+#header > h1 {display: none;}
+.logo h1 {display: none;}
+.bookmark h1 {display: none;}
+
+.menu-list h1 {display: none;}
+
+
+/* ------------------------- COMMON ------------------------------- */
+#header {
     background: rgba(255, 0, 0, .2);
 }
 
-main {
+#main {
     background: rgba(0, 0, 255, .2);
 }
 
-aside {
+#footer {
     background: rgba(0, 255, 0, .2);
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
