@@ -1,0 +1,16 @@
+HEADER
+	new in
+	offers
+	tops
+	pants
+	dresses
+	skirts
+	accessories
+	wig
+	sale
+MAIN
+	1
+
+
+	FOOTER
+ASIDE
